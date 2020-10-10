@@ -3,12 +3,12 @@ import { Image } from 'react-native'
 
 import styles from './styles'
 
-const UserAvatar = ({ source }) => (
+const UserAvatar = ({ source, style }) => (
   <Image
     source={{
       uri: source,
     }}
-    style={styles.avatar}
+    style={[styles.avatar, style]}
   />
 )
 
