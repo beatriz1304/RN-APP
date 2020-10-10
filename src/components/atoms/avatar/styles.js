@@ -4,8 +4,8 @@ import { scaleSize } from '_styles/mixins'
 
 const styles = StyleSheet.create({
   avatar: {
-    width: scaleSize(150),
-    height: scaleSize(150),
+    width: scaleSize(100),
+    height: scaleSize(100),
     borderRadius: scaleSize(80),
   },
 })
