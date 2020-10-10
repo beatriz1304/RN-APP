@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+
+import Navigations from '_navigations'
+
+import ENV from './.env.js'
+
+const client = new ApolloClient({
+  uri: 'https://api.github.com/graphql',
+  request: (operation) => {
+    const token = ENV.EXPO_PERSONAL_GITHUB_ACCESS_TOKEN
+    if (token) {
+      operation.setContext({
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+    }
+  },
+})
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <ApolloProvider client={client}>
+      <Navigations />
+    </ApolloProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
