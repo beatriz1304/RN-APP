@@ -1,12 +1,14 @@
 import React from 'react'
 import { Image } from 'react-native'
 
+import styles from './styles'
+
 const UserAvatar = ({ source }) => (
   <Image
     source={{
       uri: source,
     }}
-    style={{ width: 100, height: 100 }}
+    style={styles.avatar}
   />
 )
 
