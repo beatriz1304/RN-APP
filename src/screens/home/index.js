@@ -17,6 +17,7 @@ const GET_AVATAR = gql`
       name
       repositories(first: 3, affiliations: OWNER) {
         nodes {
+          id
           name
           description
           stargazerCount
@@ -46,7 +47,7 @@ const Home = ({ navigation }) => (
             />
             <View style={styles.repoList}>
               {data.viewer.repositories.nodes.map((item) => (
-                <RepositoryItem name={item?.name} />
+                <RepositoryItem name={item?.name} key={item.id} />
               ))}
             </View>
             <TextButton onPress={() => navigation.navigate('Repositories')}>VER MAIS</TextButton>
