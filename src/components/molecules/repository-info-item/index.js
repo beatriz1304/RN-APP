@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 
-import { BaseText } from '_atoms'
+import { BaseText, Chip } from '_atoms'
 
 import styles from './styles'
 
@@ -10,9 +10,7 @@ const RepositoryInfoItem = ({ icon, title, value, iconBackgroundColor }) => (
     <View style={[styles.icon, { backgroundColor: iconBackgroundColor }]}>{icon}</View>
     <View style={styles.content}>
       <BaseText>{title}</BaseText>
-      <View style={styles.chip}>
-        <BaseText>{value}</BaseText>
-      </View>
+      <Chip text={value} />
     </View>
   </View>
 )
