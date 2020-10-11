@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { gql, useQuery } from '@apollo/client'
 
+import { NativeButton } from '_atoms'
 import { Banner, RepositoryItem, TextButton } from '_molecules'
 import BackgroundImage from '_images/background.png'
 import { Colors } from '_styles'
@@ -38,11 +39,13 @@ const Home = ({ navigation }) => {
   return (
     <ScrollView style={{ backgroundColor: Colors.BACKGROUND, marginBottom: 30 }}>
       <View>
-        <Banner
-          backgroundImage={BackgroundImage}
-          avatar={data?.viewer?.avatarUrl}
-          userName={data?.viewer?.login}
-        />
+        <NativeButton onPress={() => navigation.navigate('Profile')}>
+          <Banner
+            backgroundImage={BackgroundImage}
+            avatar={data?.viewer?.avatarUrl}
+            userName={data?.viewer?.login}
+          />
+        </NativeButton>
         <View style={styles.repoList}>
           {data.viewer.repositories.nodes.map((item) => (
             <RepositoryItem
