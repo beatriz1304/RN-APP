@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: Mixins.scaleSize(16),
-    borderRadius: Mixins.scaleSize(50),
+    borderRadius: Mixins.scaleSize(4),
   },
 })
 

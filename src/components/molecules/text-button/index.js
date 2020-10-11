@@ -5,9 +5,9 @@ import { Colors } from '_styles'
 
 import styles from './styles'
 
-const TextButton = ({ onPress, children }) => (
-  <NativeButton onPress={onPress} style={styles.button}>
-    <BaseText color={Colors.WHITE} isBold>
+const TextButton = ({ style, onPress, textStyle, children }) => (
+  <NativeButton onPress={onPress} style={[styles.button, style]}>
+    <BaseText color={Colors.WHITE} isBold style={textStyle}>
       {children}
     </BaseText>
   </NativeButton>
