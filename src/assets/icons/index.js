@@ -1,3 +1,5 @@
 export { default as RepositoryIcon } from './repository'
 export { default as RightArrowIcon } from './right-arrow'
 export { default as StarIcon } from './star'
+export { default as IssueIcon } from './issue'
+export { default as PullRequestIcon } from './pull-request'
