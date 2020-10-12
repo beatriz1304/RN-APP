@@ -1,6 +1,5 @@
 import React from 'react'
-import ApolloClient from 'apollo-boost'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import Navigations from '_navigations'
 import {
@@ -13,17 +12,13 @@ import { AppLoading } from 'expo'
 
 import ENV from './.env.js'
 
+const token = ENV.EXPO_PERSONAL_GITHUB_ACCESS_TOKEN
+
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
-  request: (operation) => {
-    const token = ENV.EXPO_PERSONAL_GITHUB_ACCESS_TOKEN
-    if (token) {
-      operation.setContext({
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
-    }
+  cache: new InMemoryCache(),
+  headers: {
+    authorization: `Bearer ${token}`,
   },
 })
 
