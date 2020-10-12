@@ -15,7 +15,7 @@ const GET_AVATAR = gql`
       avatarUrl
       login
       name
-      repositories(first: 3, affiliations: OWNER) {
+      repositories(first: 3, affiliations: OWNER, orderBy: { field: UPDATED_AT, direction: DESC }) {
         nodes {
           id
           name
