@@ -16,6 +16,7 @@ module.exports = function (api) {
             _styles: './src/styles',
             _images: './src/assets/images',
             _icons: './src/assets/icons',
+            _graphql: './src/graphql',
           },
         },
       ],
