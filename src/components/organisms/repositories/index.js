@@ -1,37 +1,9 @@
 import React from 'react'
 import { Text } from 'react-native'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
+import { GET_REPOSITORIES } from '_graphql'
 import { RepositoryItem, List } from '_molecules'
-
-const GET_REPOSITORIES = gql`
-  query($cursor: String) {
-    viewer {
-      repositories(
-        first: 10
-        affiliations: OWNER
-        after: $cursor
-        orderBy: { field: UPDATED_AT, direction: DESC }
-      ) {
-        nodes {
-          name
-          description
-          url
-          stargazerCount
-          updatedAt
-          primaryLanguage {
-            color
-            name
-          }
-        }
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-      }
-    }
-  }
-`
 
 const RepositoriesWrapper = () => {
   const { data, loading, error, fetchMore } = useQuery(GET_REPOSITORIES, {
