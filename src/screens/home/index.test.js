@@ -81,7 +81,7 @@ const mockRequestRepoDetail = {
 }
 
 // const mocks = [mockRequestHome, mockRequestRepoDetail, mockRequestHome]
-test('if home page is loading', () => {
+test('if home page is showing loading state', () => {
   const { getByText } = render(
     <MockedProvider mocks={[mockRequestHome]} addTypename={false}>
       <HomeScreen />
@@ -129,6 +129,5 @@ test('if clicking on repo item takes you to the detail repo screen', async () =>
   })
 
   const repoItemToClick = getByText('REPO-NAME-1')
-
   fireEvent(repoItemToClick, 'press')
 })
