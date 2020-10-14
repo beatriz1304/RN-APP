@@ -2,17 +2,17 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { useQuery } from '@apollo/client'
 
-import { BaseText, Avatar, Chip } from '_atoms'
+import { BaseText, Avatar, Chip, Loader } from '_atoms'
 import { UserInfo, TextButton } from '_molecules'
 import { Colors } from '_styles'
 import { OrganizationIcon, LocationIcon, MailIcon, PersonIcon, StarIcon } from '_icons'
-import { GET_PROFILE } from '_graphql'
+import { GET_PROFILE } from '_graphql/query'
 
 import styles from './styles'
 
 const Profile = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_PROFILE)
-  if (loading) return <Text>Loading...</Text>
+  if (loading) return <Loader />
   if (error) return <Text>Error :(</Text>
 
   return (

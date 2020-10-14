@@ -81,6 +81,7 @@ export const GET_REPOSITORIES = gql`
         orderBy: { field: UPDATED_AT, direction: DESC }
       ) {
         nodes {
+          id
           name
           description
           url

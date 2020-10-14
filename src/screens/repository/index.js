@@ -3,11 +3,11 @@ import { View, Text, ScrollView } from 'react-native'
 import { gql, useQuery } from '@apollo/client'
 import Markdown from 'react-native-markdown-display'
 
-import { BaseText, Card } from '_atoms'
+import { BaseText, Card, Loader } from '_atoms'
 import { RepositoryInfoItem } from '_molecules'
 import { StarIcon, IssueIcon, PullRequestIcon } from '_icons'
 import { Colors } from '_styles'
-import { GET_REPOSITORY_DETAIL } from '_graphql'
+import { GET_REPOSITORY_DETAIL } from '_graphql/query'
 
 import styles from './styles'
 
@@ -17,7 +17,7 @@ const RepositoryDetail = ({ route }) => {
     variables: { repo_name: name },
   })
 
-  if (loading) return <Text>Loading...</Text>
+  if (loading) return <Loader />
   if (error) return <Text>Error :(</Text>
   return (
     <View>

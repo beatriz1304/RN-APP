@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import PropTypes from 'prop-types'
 
 import { BaseText, Chip } from '_atoms'
 
@@ -14,5 +15,19 @@ const RepositoryInfoItem = ({ icon, title, value, iconBackgroundColor }) => (
     </View>
   </View>
 )
+
+RepositoryInfoItem.propTypes = {
+  icon: PropTypes.instanceOf(Object),
+  title: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  iconBackgroundColor: PropTypes.string,
+}
+
+RepositoryInfoItem.defaultProps = {
+  icon: undefined,
+  title: undefined,
+  value: undefined,
+  iconBackgroundColor: undefined,
+}
 
 export default RepositoryInfoItem

@@ -2,20 +2,19 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { useQuery } from '@apollo/client'
 
-import { NativeButton } from '_atoms'
+import { NativeButton, Loader } from '_atoms'
 import { Banner, RepositoryItem, TextButton } from '_molecules'
 import BackgroundImage from '_images/background.png'
-import { Colors } from '_styles'
-import { GET_HOME_INFO } from '_graphql'
+import { GET_HOME_INFO } from '_graphql/query'
 
 import styles from './styles'
 
 const Home = ({ navigation }) => {
   const { loading, error, data } = useQuery(GET_HOME_INFO)
-  if (loading) return <Text>Loading...</Text>
+  if (loading) return <Loader />
   if (error) return <Text>Error :(</Text>
   return (
-    <ScrollView style={{ backgroundColor: Colors.BACKGROUND, marginBottom: 30 }}>
+    <ScrollView style={styles.container}>
       <View>
         <NativeButton onPress={() => navigation.navigate('Profile')}>
           <Banner

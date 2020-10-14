@@ -3,10 +3,10 @@ import React from 'react'
 import { Container } from '_atoms'
 import { Repositories } from '_organisms'
 
-const RepositoriesScreen = () => {
+const RepositoriesScreen = ({ navigation }) => {
   return (
     <Container>
-      <Repositories />
+      <Repositories navigation={navigation} />
     </Container>
   )
 }
