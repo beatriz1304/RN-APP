@@ -20,7 +20,7 @@ Follow the steps in [Creating a personal access token](https://docs.github.com/e
 
 
 ```bash
-git clone https://github.com/XXXX
+git clone https://github.com/beatriz1304/RN-APP
 cd rn-app
 echo "export default myToken= <Insert your personal token here>" > token.js
 yarn install
