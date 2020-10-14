@@ -10,7 +10,7 @@ import {
 } from '@expo-google-fonts/montserrat'
 import { AppLoading } from 'expo'
 
-import ENV from './.env.js'
+import ENV from './token'
 
 const token = ENV.EXPO_PERSONAL_GITHUB_ACCESS_TOKEN
 
