@@ -1,43 +1,20 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
-import { NativeButton } from '_atoms'
+import { NativeButton, Loader } from '_atoms'
 import { Banner, RepositoryItem, TextButton } from '_molecules'
 import BackgroundImage from '_images/background.png'
-import { Colors } from '_styles'
+import { GET_HOME_INFO } from '_graphql/query'
 
 import styles from './styles'
 
-const GET_AVATAR = gql`
-  query {
-    viewer {
-      avatarUrl
-      login
-      name
-      repositories(first: 3, affiliations: OWNER, orderBy: { field: UPDATED_AT, direction: DESC }) {
-        nodes {
-          id
-          name
-          description
-          stargazerCount
-          updatedAt
-          primaryLanguage {
-            color
-            name
-          }
-        }
-      }
-    }
-  }
-`
-
 const Home = ({ navigation }) => {
-  const { loading, error, data } = useQuery(GET_AVATAR)
-  if (loading) return <Text>Loading...</Text>
+  const { loading, error, data } = useQuery(GET_HOME_INFO)
+  if (loading) return <Loader />
   if (error) return <Text>Error :(</Text>
   return (
-    <ScrollView style={{ backgroundColor: Colors.BACKGROUND, marginBottom: 30 }}>
+    <ScrollView style={styles.container}>
       <View>
         <NativeButton onPress={() => navigation.navigate('Profile')}>
           <Banner
@@ -52,6 +29,7 @@ const Home = ({ navigation }) => {
               name={item?.name}
               key={item.id}
               onPress={() => navigation.navigate('Repository', { name: item?.name })}
+              showStarInfo={false}
             />
           ))}
         </View>

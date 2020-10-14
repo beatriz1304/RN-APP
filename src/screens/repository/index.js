@@ -3,36 +3,13 @@ import { View, Text, ScrollView } from 'react-native'
 import { gql, useQuery } from '@apollo/client'
 import Markdown from 'react-native-markdown-display'
 
-import { BaseText, Card } from '_atoms'
+import { BaseText, Card, Loader } from '_atoms'
 import { RepositoryInfoItem } from '_molecules'
 import { StarIcon, IssueIcon, PullRequestIcon } from '_icons'
 import { Colors } from '_styles'
+import { GET_REPOSITORY_DETAIL } from '_graphql/query'
 
 import styles from './styles'
-
-const GET_REPOSITORY_DETAIL = gql`
-  query($repo_name: String!) {
-    viewer {
-      repository(name: $repo_name) {
-        object(expression: "master:README.md") {
-          ... on Blob {
-            text
-          }
-        }
-        url
-        name
-        issues(states: OPEN) {
-          totalCount
-        }
-        pullRequests(states: OPEN) {
-          totalCount
-        }
-        stargazerCount
-        descriptionHTML
-      }
-    }
-  }
-`
 
 const RepositoryDetail = ({ route }) => {
   const { name } = route.params
@@ -40,7 +17,7 @@ const RepositoryDetail = ({ route }) => {
     variables: { repo_name: name },
   })
 
-  if (loading) return <Text>Loading...</Text>
+  if (loading) return <Loader />
   if (error) return <Text>Error :(</Text>
   return (
     <View>
@@ -67,9 +44,11 @@ const RepositoryDetail = ({ route }) => {
           iconBackgroundColor={Colors.PURPLE}
         />
 
-        <Card style={styles.readme}>
-          <Markdown>{data?.viewer?.repository?.object?.text}</Markdown>
-        </Card>
+        {data?.viewer?.repository?.object?.text && (
+          <Card style={styles.readme}>
+            <Markdown>{data?.viewer?.repository?.object?.text}</Markdown>
+          </Card>
+        )}
       </ScrollView>
     </View>
   )

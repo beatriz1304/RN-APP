@@ -22,7 +22,7 @@ const client = new ApolloClient({
   },
 })
 
-export default function App() {
+const App = () => {
   let [fontsLoaded] = useFonts({
     Montserrat_700Bold,
     Montserrat_600SemiBold,
@@ -38,3 +38,5 @@ export default function App() {
     </ApolloProvider>
   )
 }
+
+export default App
