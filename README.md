@@ -23,6 +23,7 @@ Follow the steps in [Creating a personal access token](https://docs.github.com/e
 git clone https://github.com/XXXX
 cd rn-app
 echo "export default myToken= <Insert your personal token here>" > token.js
-export start
+yarn install
+expo start
 ```
 
