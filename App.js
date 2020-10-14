@@ -10,9 +10,7 @@ import {
 } from '@expo-google-fonts/montserrat'
 import { AppLoading } from 'expo'
 
-import ENV from './token'
-
-const token = ENV.EXPO_PERSONAL_GITHUB_ACCESS_TOKEN
+import token from './token'
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
